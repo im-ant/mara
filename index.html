@@ -239,7 +239,7 @@
           <source src="static/videos/BimodalRevKLAnimation.mp4" type="video/mp4">
         </video>
         <figcaption class="has-text-centered" style="margin-top: 0.5rem; font-style: italic; color: #666;">
-          Vanilla KL regularized RL target mode-collapsed distributions. MARA achieves uniform coverage over all reward modes.
+          Vanilla KL regularized RL targets mode-collapsed distributions. MARA achieves uniform coverage over all reward modes.
         </figcaption>
       </figure>
       <h2 class="subtitle has-text-centered" style="margin-top: 1.5rem;">
@@ -377,7 +377,7 @@
 
         <div class="content has-text-justified">
           <p>
-            <strong>Key insight:</strong> None of these issues are "quirks" of RL—it is a consequence of how we defined the objective. Collapse is the natural result of <em>correctly</em> matching the target.
+            <strong>Key insight:</strong> Diversity collapse is not a "quirk" of RL, it is a consequence of how we defined the objective. Collapse is the natural result of <em>correctly</em> matching the optimal target distribution.
           </p>
         </div>
         <figure class="image" style="margin-bottom: 2rem;">
@@ -402,7 +402,7 @@
         
         <div class="content has-text-justified">
           <p>
-            The probability ratios give us a way to define better target distributions. With a bit of algebra one can see the following condition specifies when two samples will have the same probabilities under the target distribution for KL-regularized RL.
+            The probability ratios give us a way to define better target distributions. With a bit of algebra, one can see the following condition specifies when two samples will have the same probabilities under the target distribution for KL-regularized RL.
           </p>
         </div>
 
@@ -421,7 +421,7 @@
         
         <div class="content has-text-justified">
           <p>
-            We ensure this condition is met for all "good" samples. In practice, this is achieved by simple augmentations to the reward and $\pi_\text{ref}$.
+            We ensure this condition is met for all "good" samples. In practice, this is achieved by simple augmentations to the reward.
           </p>
           <p>
             <strong>Intuitively:</strong> We <em>increase</em> the reward for good samples with low $\pi_\text{ref}$, by referencing another good sample with high $\pi_\text{ref}$.
@@ -478,7 +478,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-centered">Forward KL Analysis</h2>
+        <h2 class="title is-3 has-text-centered">Analyzing Forward KL Regularization</h2>
         
         <div class="content has-text-justified">
           <p>
@@ -518,13 +518,16 @@
         
         <div class="content has-text-justified">
           <p>
-            By viewing RL through its target distribution, we can have more principled insights on everything from exploration to entropy collapse.
+            We identified diversity collapse in RL not as a bug, but as the natural consequence of correctly optimizing the KL-regularized objective, whose optimal target distribution is highly concentrated.
+          </p>
+          <p>
+            To address this, we introduced MARA: a simple, scalable modification that instead defines a multimodal target distribution, to directly optimize for diversity in a principled way.
           </p>
           <p class="has-text-centered" style="font-size: 1.2em; font-weight: 600; margin-top: 1.5rem;">
             It's all just distribution matching.
           </p>
           <p style="margin-top: 1.5rem;">
-            This is a useful perspective that opens up many opportunities for future works!
+            Viewing reinforcement learning through the lens of its target distribution gives us a more principled way to reason about phenomena like exploration and entropy collapse. This opens up many opportunities for future work!
           </p>
         </div>
       </div>
